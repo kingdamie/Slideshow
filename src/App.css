@@ -1,0 +1,72 @@
+body{
+  padding: 2%;
+}
+.slider {
+	height: 250px;
+	margin: auto;
+	position: relative;
+	width: 90%;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+}
+
+.slide-track {
+	display: flex;
+	width: calc(250px * 24); /* Adjust this to match the total number of slides (12 slides * 2 sets) */
+	animation: scroll 40s linear infinite;
+}
+
+.slide-track:hover {
+	animation-play-state: paused;
+}
+
+.slide {
+	height: 250px;
+	width: 250px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	border: 1px solid white;
+	perspective: 100px;
+}
+
+.slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+  transition: transform 1s;
+}
+.slide img:hover{
+  transform: translateZ(10px);
+}
+
+/* gradient shadow */
+.slider::before, .slider::after {
+	background: linear-gradient(to right, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, 0) 100%);
+	content: "";
+	height: 100%;
+	position: absolute;
+	width: 15%;
+	z-index: 2;
+}
+
+.slider::before {
+	left: 0;
+	top: 0;
+}
+
+.slider::after {
+	right: 0;
+	top: 0;
+	transform: rotateZ(180deg);
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(calc(-250px * 12)); /* Move the width of one set of slides */
+	}
+}
